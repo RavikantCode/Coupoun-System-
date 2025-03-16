@@ -49,7 +49,7 @@ const ClaimHistory = () => {
           return;
         }
         
-        const response = await axios.get(`http://localhost:5000/api/v1/admin/edit-coupon/${id}`, authConfig);
+        const response = await axios.get(`https://coupoun-system.onrender.com/api/v1/admin/edit-coupon/${id}`, authConfig);
         console.log('Coupon history response:', response.data);
         
         if (response.data && response.data.coupon) {
