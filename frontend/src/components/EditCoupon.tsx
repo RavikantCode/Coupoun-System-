@@ -33,7 +33,7 @@ const EditCoupon = () => {
     const fetchCoupon = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/v1/admin/edit-coupon/${id}`, {
+        const response = await axios.get(`https://coupoun-system.onrender.com/api/v1/admin/edit-coupon/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -54,7 +54,7 @@ const EditCoupon = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/v1/admin/edit-coupon/${id}`, formData, {
+      await axios.put(`https://coupoun-system.onrender.com/api/v1/admin/edit-coupon/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
