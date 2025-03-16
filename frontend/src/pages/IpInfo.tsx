@@ -19,7 +19,7 @@ const IpInfo = () => {
   useEffect(() => {
     const fetchIpInfo = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/v1/coupon/ip', {
+        const response = await axios.get('https://coupoun-system.onrender.com/api/v1/coupon/ip', {
           withCredentials: true
         });
         setIpInfo(response.data);
