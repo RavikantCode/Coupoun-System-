@@ -25,7 +25,7 @@ const AllClaims = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/v1/admin/claim-history', {
+      const response = await axios.get('https://coupoun-system.onrender.com/api/v1/admin/claim-history', {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
