@@ -81,7 +81,6 @@ const CouponList = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header with Create Button */}
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-gray-900">Coupon Management</h2>
         <button
@@ -92,7 +91,6 @@ const CouponList = () => {
         </button>
       </div>
 
-      {/* Coupon Table */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
@@ -157,7 +155,6 @@ const CouponList = () => {
         </div>
       </div>
 
-      {/* Create Coupon Modal */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">

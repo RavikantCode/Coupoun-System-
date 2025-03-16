@@ -46,7 +46,7 @@ const AllClaims = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Header */}
+  
       <nav className="bg-gray-800/90 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -57,12 +57,11 @@ const AllClaims = () => {
               <FaArrowLeft /> Back to Dashboard
             </button>
             <h1 className="text-xl font-bold text-white">All Claims History</h1>
-            <div className="w-20"></div> {/* Spacer for centering */}
+            <div className="w-20"></div> 
           </div>
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="bg-gray-800/90 rounded-lg shadow-xl overflow-hidden">
           {loading ? (

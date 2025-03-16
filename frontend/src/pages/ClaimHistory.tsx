@@ -19,7 +19,6 @@ interface Coupon {
   claim_history: ClaimHistory[];
 }
 
-// Helper function to get auth headers
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
   if (!token) return null;
@@ -80,9 +79,8 @@ const ClaimHistory = () => {
     });
   };
 
-  // Handle back navigation with state preservation
+ 
   const handleBackNavigation = () => {
-    // Navigate back to dashboard with replace to avoid adding to history stack
     navigate('/dashboard', { replace: true, state: { forceRefresh: Date.now() } });
   };
 

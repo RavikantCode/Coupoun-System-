@@ -19,10 +19,8 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         
-        {/* Dashboard routes */}
         <Route path="/dashboard" element={<Dashboard />} />
         
-        {/* Admin routes */}
         <Route path="/admin" element={<Dashboard />}>
           <Route index element={<Navigate to="coupons" replace />} />
           <Route path="coupons" element={<CouponList />} />
@@ -30,21 +28,13 @@ const App = () => {
           <Route path="coupons/edit/:id" element={<EditCoupon />} />
           <Route path="coupons/history/:id" element={<CouponHistory />} />
         </Route>
+                <Route path="/claim-history/:id" element={<ClaimHistory />} />
         
-        {/* Claim history as a separate route */}
-        <Route path="/claim-history/:id" element={<ClaimHistory />} />
-        
-        {/* IP Info page */}
         <Route path="/ip-info" element={<IpInfo />} />
         
-        {/* Root route for guest users to claim coupons */}
         <Route path="/" element={<ClaimCoupon />} />
-        
-        {/* All claims page */}
-        <Route path="/all-claims" element={<AllClaims />} />
-        
-        {/* Catch all route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="/all-claims" element={<AllClaims />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

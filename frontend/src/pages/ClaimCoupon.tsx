@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { FaGift, FaSpinner, FaClock, FaTicketAlt, FaArrowRight, FaSync } from 'react-icons/fa';
-import { API_ROUTES } from '../config/api';
-import { API_BASE_URL } from '../config/api';
 
 interface ClaimedCoupon {
   code: string;
@@ -13,7 +11,7 @@ interface ClaimedCoupon {
 }
 
 const axiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: "http://localhost:5000/api/v1",
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json'
@@ -31,13 +29,11 @@ const ClaimCoupon = () => {
   const [couponsAvailable, setCouponsAvailable] = useState<boolean>(true);
 
   useEffect(() => {
-    // Check if there's a coupon in localStorage
     const savedCoupon = localStorage.getItem('claimedCoupon');
     if (savedCoupon) {
       const coupon = JSON.parse(savedCoupon);
       setClaimedCoupon(coupon);
       
-      // Check if the coupon is still valid
       const expiryDate = new Date(coupon.expires_at);
       if (expiryDate > new Date()) {
         const timeLeft = getTimeLeft(expiryDate);
@@ -46,7 +42,6 @@ const ClaimCoupon = () => {
       }
     }
 
-    // Add a bounce effect to the floating button after a delay
     const bounceTimeout = setTimeout(() => {
       const floatingButton = document.querySelector('.floating-ticket-button');
       if (floatingButton) {
@@ -61,7 +56,6 @@ const ClaimCoupon = () => {
   }, []);
 
   useEffect(() => {
-    // Update countdown timer every minute
     if (nextAvailable) {
       const interval = setInterval(() => {
         if (nextAvailable > new Date()) {
@@ -105,7 +99,6 @@ const ClaimCoupon = () => {
         toast.success('Coupon claimed successfully!');
       }
     } catch (error: any) {
-      // Handle the out of stock response
       if (error.response?.data?.message === 'Sorry, all coupons are out of stock!') {
         toast.error('Sorry, all coupons are out of stock!');
         setCouponsAvailable(false);
@@ -121,13 +114,9 @@ const ClaimCoupon = () => {
     navigate('/login');
   };
 
-  const toggleFloatingButton = () => {
-    setIsButtonExpanded(!isButtonExpanded);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e1b4b] flex flex-col">
-      {/* Simplified Header */}
       <header className="bg-black/20 backdrop-blur-xl border-b border-white/10 h-16">
         <div className="max-w-5xl mx-auto px-4 h-full">
           <div className="flex justify-between items-center h-full">
@@ -142,10 +131,8 @@ const ClaimCoupon = () => {
         </div>
       </header>
 
-      {/* Centered Main Content */}
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md mx-auto space-y-6">
-          {/* Title Section */}
           <div className="text-center space-y-3">
             <h2 className="text-3xl font-bold text-white">
               Claim Your Coupon
@@ -155,7 +142,7 @@ const ClaimCoupon = () => {
             </p>
           </div>
 
-          {/* Main Card */}
+        
           <div className="bg-black/20 backdrop-blur-xl rounded-lg border border-white/10 p-6">
             {claimedCoupon ? (
               <div className="space-y-4">
@@ -221,7 +208,7 @@ const ClaimCoupon = () => {
         </div>
       </main>
 
-      {/* Footer */}
+     
       <footer className="bg-black/20 backdrop-blur-xl border-t border-white/10 h-12">
         <div className="max-w-5xl mx-auto px-4 h-full flex items-center justify-center">
           <p className="text-gray-400 text-sm">

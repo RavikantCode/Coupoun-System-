@@ -35,7 +35,6 @@ const IpInfo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-purple-900 flex flex-col">
-      {/* Header */}
       <header className="bg-white/10 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -54,7 +53,6 @@ const IpInfo = () => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white/10 backdrop-blur-md rounded-xl shadow-2xl overflow-hidden border border-white/20">
           <div className="p-8">
@@ -100,7 +98,6 @@ const IpInfo = () => {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="bg-white/5 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-purple-200 text-sm">

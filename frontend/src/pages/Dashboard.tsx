@@ -29,7 +29,6 @@ interface ClaimRecord {
   claimed_at: string;
 }
 
-// Helper function to get auth headers
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
   if (!token) return null;
@@ -62,7 +61,6 @@ const Dashboard = () => {
   });
   const [deletingCoupon, setDeletingCoupon] = useState<string | null>(null);
 
-  // This effect will run whenever the location changes (including when navigating back)
   useEffect(() => {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('userRole');
@@ -76,7 +74,6 @@ const Dashboard = () => {
     fetchCoupons();
     fetchAllClaims();
 
-    // Add event listener to handle when the page becomes visible again
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         fetchCoupons();
@@ -84,13 +81,10 @@ const Dashboard = () => {
       }
     };
 
-    // Add event listener for page visibility changes
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Add event listener for when the user navigates back to this page
     window.addEventListener('popstate', fetchCoupons);
 
-    // Cleanup event listeners on component unmount
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('popstate', fetchCoupons);
@@ -116,12 +110,10 @@ const Dashboard = () => {
         return;
       }
       
-      // Use the endpoint that returns all coupons, including claimed ones
       const response = await axios.get('http://localhost:5000/api/v1/admin/coupons?includeAll=true', authConfig);
       
       console.log('Coupons response:', response.data);
       
-      // Check if the response has the expected structure
       if (response.data && response.data.coupons && Array.isArray(response.data.coupons)) {
         setCoupons(response.data.coupons);
       } else if (response.data && Array.isArray(response.data)) {
@@ -202,10 +194,9 @@ const Dashboard = () => {
       
       console.log(`Toggling ${field} for coupon:`, couponCode);
       
-      // Use the correct endpoint based on the backend route
       const response = await axios.post(
         'http://localhost:5000/api/v1/admin/toggle-coupon', 
-        { code: couponCode }, // Send the coupon code
+        { code: couponCode }, 
         authConfig
       );
       
@@ -258,14 +249,12 @@ const Dashboard = () => {
 
   const viewClaimHistory = async (coupon: Coupon) => {
     try {
-      // If the coupon already has detailed claim history, just show the modal
       if (coupon.claim_history && coupon.claim_history.length > 0) {
         setSelectedCoupon(coupon);
         setIsHistoryModalOpen(true);
         return;
       }
       
-      // Otherwise, fetch detailed claim history
       const authConfig = getAuthHeaders();
       if (!authConfig) {
         toast.error('Authentication token missing. Please log in again.');
@@ -273,34 +262,28 @@ const Dashboard = () => {
         return;
       }
       
-      // Show loading state
       const toastId = toast.loading('Fetching claim history...');
       
-      // First try to get claim history from the coupon endpoint
       try {
         const response = await axios.get(`http://localhost:5000/api/v1/admin/edit-coupon/${coupon._id}`, authConfig);
         
         toast.dismiss(toastId);
         
         if (response.data && response.data.coupon) {
-          // If the coupon has claim history in the response, use it
           setSelectedCoupon(response.data.coupon);
           setIsHistoryModalOpen(true);
         } else {
-          // If not, try the claim-history endpoint to get more details
           const claimResponse = await axios.get(`http://localhost:5000/api/v1/admin/claim-history`, authConfig);
           
           if (claimResponse.data && claimResponse.data.claims) {
-            // Filter claims for this coupon
             const couponClaims = claimResponse.data.claims.filter(
               (claim: any) => claim.coupon_code === coupon.code
             );
             
-            // Create a new coupon object with the claim history
             const couponWithHistory = {
               ...coupon,
               claim_history: couponClaims.map((claim: any) => ({
-                user_id: 'Anonymous', // User ID is not tracked in our system
+                user_id: 'Anonymous', 
                 claimed_at: claim.claimed_at,
                 ip_address: claim.ip_address || 'N/A',
                 public_ip: claim.public_ip || 'N/A',
@@ -328,7 +311,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#1a1f3c] text-white">
-      {/* Top Navigation - Fixed at top */}
       <nav className="bg-[#151a30] shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
@@ -350,14 +332,11 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      {/* Main Content Area - Centered */}
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {userRole === 'admin' ? (
             <div className="space-y-6">
-              {/* Centered Control Panel */}
               <div className="bg-[#151a30] rounded-xl border border-white/10 p-6 shadow-xl">
-                {/* Centered Title and Controls */}
                 <div className="flex flex-col items-center justify-center mb-8 space-y-6">
                   <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
                     Coupon Management
@@ -378,7 +357,6 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                {/* Claims Table */}
                 {showAllClaims && (
                   <div className="bg-[#151a30] rounded-lg shadow-lg overflow-hidden mb-6">
                     <div className="px-6 py-4 bg-[#1d2340]">
@@ -423,7 +401,6 @@ const Dashboard = () => {
                   </div>
                 )}
 
-                {/* Coupon Table */}
                 <div className="bg-[#151a30] rounded-lg shadow-lg overflow-hidden">
                   <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-[#2d3555]">
@@ -519,7 +496,6 @@ const Dashboard = () => {
         </div>
       </main>
 
-      {/* Create Coupon Modal */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-[#1a1a2e]/90 rounded-xl p-8 w-full max-w-md border border-white/10 shadow-2xl">
@@ -577,7 +553,6 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* History Modal */}
       {isHistoryModalOpen && selectedCoupon && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-xl p-8 w-full max-w-4xl">

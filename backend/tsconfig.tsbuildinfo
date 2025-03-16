@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controller/couponcontroller.ts","./src/controller/admincontroller.ts","./src/route/adminroute.ts","./src/route/couponroute.ts","./src/lib/schema.ts","./src/lib/connectdb.ts","./src/lib/types.ts","./src/utils/claim.ts","./src/utils/getip.ts","./src/utils/createadmin.ts","./src/utils/isauthenticated.ts"],"version":"5.7.3"}

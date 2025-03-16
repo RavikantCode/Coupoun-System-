@@ -20,9 +20,7 @@ const Login = () => {
       ...formData,
       [name]: value
     });
-    
-    // Clear login error when user types
-    if (loginError) {
+        if (loginError) {
       setLoginError(null);
     }
   };
@@ -50,9 +48,7 @@ const Login = () => {
         localStorage.setItem('userRole', formData.role);
         
         toast.success('Login successful!');
-        
-        // Redirect based on role
-        if (formData.role === 'admin') {
+                if (formData.role === 'admin') {
           navigate('/admin');
         } else {
           navigate('/dashboard');
@@ -93,9 +89,7 @@ const Login = () => {
         flexDirection: 'column',
         padding: '20px 40px',
         boxSizing: 'border-box'
-      }}>
-        {/* Header */}
-        <div style={{ 
+      }}>        <div style={{ 
           display: 'flex', 
           justifyContent: 'space-between', 
           alignItems: 'center',
@@ -124,7 +118,6 @@ const Login = () => {
           </button>
         </div>
 
-        {/* Main Content */}
         <div style={{ 
           display: 'flex',
           flexDirection: 'row',
@@ -133,7 +126,6 @@ const Login = () => {
           flex: 1,
           position: 'relative'
         }}>
-          {/* Login Form */}
           <div style={{ 
             backgroundColor: 'rgba(15, 23, 42, 0.8)',
             padding: '40px',
@@ -317,7 +309,6 @@ const Login = () => {
             </form>
           </div>
 
-          {/* Decoration Side */}
           <div style={{ 
             width: '50%',
             position: 'relative',

@@ -45,7 +45,6 @@ const CreateCoupon = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f172a] flex flex-col">
-      {/* Top Navigation */}
       <nav className="bg-black/30 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between h-16 items-center">
@@ -59,15 +58,13 @@ const CreateCoupon = () => {
             <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
               Create New Coupon
             </h1>
-            <div className="w-24"></div> {/* Spacer for centering */}
+            <div className="w-24"></div>
           </div>
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-md">
-          {/* Animated Icon */}
           <div className="flex justify-center mb-8">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-spin-slow opacity-70 blur-md"></div>
@@ -77,10 +74,8 @@ const CreateCoupon = () => {
             </div>
           </div>
 
-          {/* Form Card */}
           <div className="bg-black/30 backdrop-blur-xl rounded-xl border border-white/10 p-8 shadow-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Coupon Code Input */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-300">
                   Coupon Code
@@ -100,7 +95,6 @@ const CreateCoupon = () => {
                 </div>
               </div>
 
-              {/* Coupon Name Input */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-300">
                   Coupon Name
@@ -119,8 +113,6 @@ const CreateCoupon = () => {
                   />
                 </div>
               </div>
-
-              {/* Toggle Options */}
               <div className="bg-black/20 rounded-lg p-4 space-y-4">
                 <label className="flex items-center justify-between group cursor-pointer">
                   <span className="text-gray-300 group-hover:text-white transition-colors duration-300">Available</span>
@@ -153,7 +145,6 @@ const CreateCoupon = () => {
                 </label>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex gap-4 pt-6">
                 <button
                   type="button"
