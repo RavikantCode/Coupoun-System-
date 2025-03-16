@@ -110,7 +110,7 @@ const Dashboard = () => {
         return;
       }
       
-      const response = await axios.get('http://localhost:5000/api/v1/admin/coupons?includeAll=true', authConfig);
+      const response = await axios.get('https://coupoun-system.onrender.com/api/v1/admin/coupons?includeAll=true', authConfig);
       
       console.log('Coupons response:', response.data);
       
@@ -139,7 +139,7 @@ const Dashboard = () => {
         return;
       }
       
-      const response = await axios.get('http://localhost:5000/api/v1/admin/claim-history', authConfig);
+      const response = await axios.get('https://coupoun-system.onrender.com/api/v1/admin/claim-history', authConfig);
       
       if (response.data && response.data.claims) {
         setAllClaims(response.data.claims);
@@ -167,7 +167,7 @@ const Dashboard = () => {
       console.log('Creating coupon:', newCoupon);
       
       const response = await axios.post(
-        'http://localhost:5000/api/v1/admin/create-coupon', 
+        'https://coupoun-system.onrender.com/api/v1/admin/create-coupon', 
         newCoupon,
         authConfig
       );
@@ -224,7 +224,7 @@ const Dashboard = () => {
         console.log('Deleting coupon with code:', couponCode);
         
         const response = await axios.post(
-          'http://localhost:5000/api/v1/admin/delete-coupon', 
+          'https://coupoun-system.onrender.com/api/v1/admin/delete-coupon', 
           { code: couponCode },
           authConfig
         );
@@ -265,7 +265,7 @@ const Dashboard = () => {
       const toastId = toast.loading('Fetching claim history...');
       
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/admin/edit-coupon/${coupon._id}`, authConfig);
+        const response = await axios.get(`https://coupoun-system.onrender.com/api/v1/admin/edit-coupon/${coupon._id}`, authConfig);
         
         toast.dismiss(toastId);
         
@@ -273,7 +273,7 @@ const Dashboard = () => {
           setSelectedCoupon(response.data.coupon);
           setIsHistoryModalOpen(true);
         } else {
-          const claimResponse = await axios.get(`http://localhost:5000/api/v1/admin/claim-history`, authConfig);
+          const claimResponse = await axios.get(`https://coupoun-system.onrender.com/api/v1/admin/claim-history`, authConfig);
           
           if (claimResponse.data && claimResponse.data.claims) {
             const couponClaims = claimResponse.data.claims.filter(
