@@ -41,7 +41,7 @@ const Login = () => {
         ? '/api/v1/admin/login'
         : '/api/v1/user/login';
 
-      const response = await axios.post(`http://localhost:5000${endpoint}`, formData);
+      const response = await axios.post(`https://coupoun-system.onrender.com${endpoint}`, formData);
       
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
