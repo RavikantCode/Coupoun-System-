@@ -31,7 +31,7 @@ const CouponList = () => {
   const fetchCoupons = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/v1/admin/coupons', {
+      const response = await axios.get('https://coupoun-system.onrender.com/api/v1/admin/coupons', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCoupons(response.data.coupons.sort((a: Coupon, b: Coupon) => 
@@ -53,7 +53,7 @@ const CouponList = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/v1/admin/create-coupon', newCoupon, {
+      await axios.post('https://coupoun-system.onrender.com/api/v1/admin/create-coupon', newCoupon, {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success('Coupon created successfully');
@@ -68,7 +68,7 @@ const CouponList = () => {
   const toggleCouponStatus = async (couponId: string, field: 'is_Active' | 'is_Available') => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/v1/admin/toggle-coupon', 
+      await axios.post('https://coupoun-system.onrender.com/api/v1/admin/toggle-coupon', 
         { code: couponId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
