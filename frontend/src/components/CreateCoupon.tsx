@@ -27,7 +27,7 @@ const CreateCoupon = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/v1/admin/create-coupon', formData, {
+      await axios.post('https://coupoun-system.onrender.com/api/v1/admin/create-coupon', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
