@@ -28,7 +28,7 @@ const CouponHistory = () => {
     const fetchCouponHistory = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/v1/admin/edit-coupon/${id}`, {
+        const response = await axios.get(`https://coupoun-system.onrender.com/api/v1/admin/edit-coupon/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCoupon(response.data.coupon);
